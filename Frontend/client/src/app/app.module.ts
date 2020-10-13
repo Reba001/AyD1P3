@@ -6,9 +6,11 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule} from '@angular/common';
+import { EncabezadoComponent } from './components/encabezado/encabezado.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EncabezadoComponent
   ],
   imports: [
     BrowserModule,
