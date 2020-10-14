@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    user:User;
 
     getuser: string;
     getpass: string;
@@ -28,10 +30,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+      this.user = new User();
       this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]});
   }
+
+  selectChangeHandler (event: any) {
+    this.rolseleccionado = event.target.value;
+  }
+
 } 
 
 
