@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `gifthub`.`USUARIO` (
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `dpi` VARCHAR(45) NOT NULL,
-  `edad` VARCHAR(45) NULL DEFAULT NULL,
+  `edad` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -64,8 +64,29 @@ CREATE TABLE IF NOT EXISTS `gifthub`.`GIFTCARDS` (
   `id_giftcards` VARCHAR(9) NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
   `descripcion` VARCHAR(200) NOT NULL,
+  `imagen` VARCHAR(500) NULL,
+  `charge_rate` DECIMAL NULL,
+  `activa` CHAR(1) NOT NULL,
   PRIMARY KEY (`id_giftcards`))
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gifthub`.`AVAILABILITY`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gifthub`.`AVAILABILITY` (
+  `id_valor` INT NOT NULL,
+  `total` INT NOT NULL,
+  `id_giftcards` VARCHAR(9) NOT NULL,
+  PRIMARY KEY (`id_valor`),
+  INDEX `fk_AVAILABILITY_GIFTCARDS1_idx` (`id_giftcards` ASC),
+  CONSTRAINT `fk_AVAILABILITY_GIFTCARDS1`
+    FOREIGN KEY (`id_giftcards`)
+    REFERENCES `gifthub`.`GIFTCARDS` (`id_giftcards`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
