@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { first } from 'rxjs/operators';
+import { LogearseService} from '../../services/logearse.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private logearse: LogearseService
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,11 @@ export class LoginComponent implements OnInit {
 
   selectChangeHandler (event: any) {
     this.rolseleccionado = event.target.value;
+  }
+
+  TryLogin()
+  {
+      this.logearse.login(this.user);
   }
 
 } 
