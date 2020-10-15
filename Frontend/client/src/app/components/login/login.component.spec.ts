@@ -19,6 +19,14 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
+  it('deberia guardar el valor del nombre', () => {
+    expect(LoginComponent['nombre'] != "");
+  });
+
+  it('deberia tener el retorno de la api vacio', () => {
+    expect(LoginComponent['retorno'] == "");
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
