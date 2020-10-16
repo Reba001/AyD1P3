@@ -8,7 +8,7 @@ function createRouter(db) {
 
 //******Login******
 router.post('/login', (req, res, next) => {
-  if((req.body.username != null && req.body.password != null) && (req.body.username != "" && req.body.password != ""))
+  if(req.body.username != null || req.body.password != null || req.body.username != "" || req.body.password != "")
   {
     db.query(
       'SELECT * FROM CUENTA WHERE username = ? AND password = ?',
@@ -26,7 +26,7 @@ router.post('/login', (req, res, next) => {
       }
     );
   }
-  else if((req.body.correo != null && req.body.password != null) && (req.body.correo != "" && req.body.password != ""))
+  else if(req.body.correo != null || req.body.password != null || req.body.coreo != "" || req.body.password != "")
   {
     db.query(
       'SELECT * FROM CUENTA WHERE correo = ? AND password = ?',
@@ -48,6 +48,100 @@ router.post('/login', (req, res, next) => {
   {
     res.status(500).json({status:'error'});
   }
+});
+
+//******Registrar usuario******
+router.post('/registrar_usuario', (req, res, next) => {
+  db.query(
+    'INSERT INTO USUARIO(nombre, apellido, dpi, edad) VALUES(?,?,?,?)',
+    [req.body.nombre, req.body.apellido, req.body.dpi, req.body.edad],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Obtener ultimo usuario******
+router.get('/ultimo_usuario', (req, res, next) => {
+  db.query(
+    'SELECT MAX(id_usuario) AS id FROM USUARIO',
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+//******Registrar cuenta******
+router.post('/registrar_cuenta', (req, res, next) => {
+  db.query(
+    'INSERT INTO CUENTA(username, correo, password, id_usuario) VALUES(?,?,?,?)',
+    [req.body.username, req.body.correo, req.body.password, req.body.id],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Verificar username******
+router.post('/verificar_user', (req, res, next) => {
+  db.query(
+    'SELECT * FROM CUENTA WHERE username=?',
+    [req.body.username],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+//******Verificar username******
+router.post('/verificar_correo', (req, res, next) => {
+  db.query(
+    'SELECT * FROM CUENTA WHERE correo=?',
+    [req.body.correo],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
 });
 
   return router;
