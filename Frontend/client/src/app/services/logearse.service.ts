@@ -20,11 +20,11 @@ export class LogearseService {
 
   constructor(private http:HttpClient) { }
 
-  login(user:User) : Observable<User>
+  login(user:User)
   {
     this.http.post<any>(this.usuariourl, {user}, httpOptions).subscribe(data => {
     this.retorno = data.id;
     console.log('respuesta: ' + data.id);})
-    return;
+    return this.retorno;
   }
 }

@@ -44,12 +44,7 @@ describe('LogearseService', () => {
   it('debería de buscar usuario con mock de objeto', () => {
     const catObservable: Observable<User> = of(UsuarioMock);
     httpClientMock.post.and.returnValue(catObservable);
-      service.login(UsuarioMock)
-      .subscribe(catStatus => {
-        expect(httpClientMock.post)
-          .toHaveBeenCalledWith(url, UsuarioMock);
-        expect(JSON.stringify(catStatus)).toBe(JSON.stringify(UsuarioMock));
-      });
+      expect(service.login(UsuarioMock)).toEqual(jasmine.any(String));
     });
 
   it('should be created', () => {

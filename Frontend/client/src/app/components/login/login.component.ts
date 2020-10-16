@@ -44,7 +44,14 @@ export class LoginComponent implements OnInit {
 
   TryLogin()
   {
-      this.logearse.login(this.user);
+      if(this.logearse.login(this.user) == 'ok')
+      {
+          //rutear a página siguiente
+      }
+      else
+      {
+          console.log("usuario no registrado");
+      }
   }
 
 } 
