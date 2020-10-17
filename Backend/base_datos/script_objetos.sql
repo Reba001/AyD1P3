@@ -87,7 +87,88 @@ CREATE TABLE IF NOT EXISTS `gifthub`.`AVAILABILITY` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `gifthub`.`FACTURA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gifthub`.`FACTURA` (
+  `id_factura` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `estado` VARCHAR(1) NOT NULL,
+  `no_tarjeta` VARCHAR(50) NULL,
+  `id_usuario` INT(11) NOT NULL,
+  PRIMARY KEY (`id_factura`),
+  INDEX `fk_FACTURA_USUARIO1_idx` (`id_usuario` ASC),
+  CONSTRAINT `fk_FAC_USR`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `gifthub`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `gifthub`.`DETALLE`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gifthub`.`DETALLE` (
+  `id_compra` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  `precio` DECIMAL(3,2) NULL,
+  `id_factura` INT NOT NULL,
+  `id_giftcards` VARCHAR(9) NOT NULL,
+  PRIMARY KEY (`id_compra`),
+  INDEX `fk_DETALLE_FACTURA1_idx` (`id_factura` ASC) ,
+  INDEX `fk_DETALLE_GIFTCARDS1_idx` (`id_giftcards` ASC) ,
+  CONSTRAINT `fk_DETALLE_FACTURA1`
+    FOREIGN KEY (`id_factura`)
+    REFERENCES `gifthub`.`FACTURA` (`id_factura`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_DETALLE_GIFTCARDS1`
+    FOREIGN KEY (`id_giftcards`)
+    REFERENCES `gifthub`.`GIFTCARDS` (`id_giftcards`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `gifthub`.`REGALO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gifthub`.`REGALO` (
+  `id_regalo` INT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `id_usuario` INT(11) NOT NULL,
+  PRIMARY KEY (`id_regalo`),
+  INDEX `fk_REGALO_USUARIO1_idx` (`id_usuario` ASC) ,
+  CONSTRAINT `fk_REGALO_USUARIO1`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `gifthub`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gifthub`.`DET_REGALO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gifthub`.`DET_REGALO` (
+  `id_det_regalo` INT NOT NULL,
+  `comentario` VARCHAR(200) NULL,
+  `cantidad` INT NOT NULL,
+  `id_regalo` INT NOT NULL,
+  `id_giftcards` VARCHAR(9) NOT NULL,
+  PRIMARY KEY (`id_det_regalo`),
+  INDEX `fk_DET_REGALO_REGALO1_idx` (`id_regalo` ASC) ,
+  INDEX `fk_DET_REGALO_GIFTCARDS1_idx` (`id_giftcards` ASC) ,
+  CONSTRAINT `fk_DET_REGALO_REGALO1`
+    FOREIGN KEY (`id_regalo`)
+    REFERENCES `gifthub`.`REGALO` (`id_regalo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_DET_REGALO_GIFTCARDS1`
+    FOREIGN KEY (`id_giftcards`)
+    REFERENCES `gifthub`.`GIFTCARDS` (`id_giftcards`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 
