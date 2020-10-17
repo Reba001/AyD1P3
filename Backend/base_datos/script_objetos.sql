@@ -135,11 +135,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gifthub`.`REGALO` (
   `id_regalo` INT NOT NULL,
   `fecha` DATE NOT NULL,
-  `id_usuario` INT(11) NOT NULL,
+  `emisor` INT(11) NOT NULL,
+  `receptor` INT(11) NOT NULL,
   PRIMARY KEY (`id_regalo`),
-  INDEX `fk_REGALO_USUARIO1_idx` (`id_usuario` ASC) ,
+  INDEX `fk_REGALO_USUARIO1_idx` (`emisor` ASC) ,
+  INDEX `fk_REGALO_USUARIO2_idx` (`receptor` ASC) ,
   CONSTRAINT `fk_REGALO_USUARIO1`
-    FOREIGN KEY (`id_usuario`)
+    FOREIGN KEY (`emisor`)
+    REFERENCES `gifthub`.`USUARIO` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_REGALO_USUARIO2`
+    FOREIGN KEY (`receptor`)
     REFERENCES `gifthub`.`USUARIO` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
