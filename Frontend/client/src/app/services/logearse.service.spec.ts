@@ -20,9 +20,15 @@ describe('LogearseService', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let user:User;
   let httpClientMock: HttpClientMock;
-  const UsuarioMock: User ={
+
+    const UsuarioMock: User ={
     usuario:'Usuarioprueba',
     password:'passwordprueba'  
+}
+
+const UsuarioMockVacio: User ={
+  usuario:'',
+  password:''
 }
 
 
