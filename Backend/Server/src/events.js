@@ -12,7 +12,6 @@ function createRouter(db) {
     console.log(prod);
     res.status(200).jsonp(prod());
   });
-  return router;
 
 
 
