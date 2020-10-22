@@ -6,6 +6,17 @@ function createRouter(db) {
 
   // the routes are defined here
 
+  //********** PETICIONES HTTP PARA LOS MOCKS *************** */
+  router.get('/mock_get_usuarios', (req,res,next)=>{
+    const prod = require('../test/usuarios');
+    console.log(prod);
+    res.status(200).jsonp(prod());
+  });
+  return router;
+
+
+
+
 //******Login******
 router.post('/login', (req, res, next) => {
   if(req.body.username != null || req.body.password != null || req.body.username != "" || req.body.password != "")

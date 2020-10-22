@@ -56,3 +56,18 @@ describe('Prueba para iniciar sesión ', ()=>{
         expect(res.status).to.be.equal(500);
     });
 });
+
+
+//************ OBTENER USUARIOS POR MOCK ************* */
+describe.only('Mockito de obtner usuarios',()=>{
+    it('Debe poder obtener usuarios ', (done) => {
+       let res = chai
+          .request(url)
+          .get('/mock_get_usuarios')
+          .end(function (err, res) {
+             console.log(res.body)
+             expect(res).to.have.status(200);
+             done();
+          });
+    });
+});
