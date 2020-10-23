@@ -6,6 +6,16 @@ function createRouter(db) {
 
   // the routes are defined here
 
+  //********** PETICIONES HTTP PARA LOS MOCKS *************** */
+  router.get('/mock_get_usuarios', (req,res,next)=>{
+    const prod = require('../test/usuarios');
+    console.log(prod);
+    res.status(200).jsonp(prod());
+  });
+
+
+
+
 //******Login******
 router.post('/login', (req, res, next) => {
   if(req.body.username != null || req.body.password != null || req.body.username != "" || req.body.password != "")
@@ -143,6 +153,31 @@ router.post('/verificar_correo', (req, res, next) => {
     }
   );
 });
+
+//******Obtener informacion de usuario ******
+router.get('/get_info_usuario', (req, res, next) => {
+  db.query(
+    'SELECT u.nombre, u.apellido, u.dpi, u.edad, c.username, c.correo, c.password\
+    FROM\
+      USUARIO  u\
+    INNER JOIN CUENTA  c\
+    ON u.id_usuario = c.id_usuario\
+    AND c.username = ?',
+    [req.body.username],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
 
   return router;
 }
