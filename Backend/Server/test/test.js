@@ -57,9 +57,26 @@ describe('Prueba para iniciar sesión ', ()=>{
     });
 });
 
+describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
+    it('debe poder obtener una cuenta de usuario registrada ', async () => {
+        let res = await chai
+        .request(url)
+        .get('/get_info_usuario')
+        .send({username:"user1"});
+        expect(res.status).to.equal(200);
+    });
+});
+
+
+
+/*
+***********************************************
+******* PREUBAS UTILIZANDO MOCKS **************
+***********************************************
+*/
 
 //************ OBTENER USUARIOS POR MOCK ************* */
-describe.only('Mockito de obtner usuarios',()=>{
+describe('Mockito de obtner usuarios',()=>{
     it('Debe poder obtener usuarios ', (done) => {
        let res = chai
           .request(url)
