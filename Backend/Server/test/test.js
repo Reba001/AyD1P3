@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 chai.use(chaiHttp);
 const url = 'http://localhost:3000';
 
-//DAR DE BAJA CUENTA
+//LOGIN
 describe('Prueba para iniciar sesión ', ()=>{
     it('Inicio de sesión con usuario', async () => {
         let res = await chai

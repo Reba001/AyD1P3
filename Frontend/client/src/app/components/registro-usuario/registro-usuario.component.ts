@@ -69,6 +69,11 @@ export class RegistroUsuarioComponent implements OnInit {
     let ultimoId:any = await this.usuarioService.obtenerUltimouser().toPromise();
     console.log(ultimoId);
 
+    cuenta.id_usuario = ultimoId.id_usuario;
+
+    let cuenta2:any = await this.usuarioService.registrarCuenta(cuenta).toPromise();
+    console.log(cuenta2);
+
     
 
   }
