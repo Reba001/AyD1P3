@@ -1,0 +1,6 @@
+projectKey=ayd1p3
+serverUrl=http://localhost:9000
+serverVersion=8.5.0.37579
+dashboardUrl=http://localhost:9000/dashboard?id=ayd1p3
+ceTaskId=AXVWHKwI61o3T6GXUTWA
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXVWHKwI61o3T6GXUTWA
