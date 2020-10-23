@@ -58,6 +58,25 @@ describe('Prueba para iniciar sesión ', ()=>{
 });
 
 describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
+    // before(async () =>{ //creando una cuenta prototipo
+    //     let res = await chai
+    //     .request(url)
+    //     .post('/registrar_usuario')
+    //     .send({nombre:"nombretest", apellido:"apellidopasword",dpi:"123456",edad:20});
+    //     expect(res.status).to.be.equal(500);
+
+    //     let res2 = await chai
+    //     .request(url)
+    //     .get('/ultimo_usuario')
+    //     expect(res2.status).to.be.equal(500);
+
+    //     let res3 = await chai
+    //     .request(url)
+    //     .post('/registrar_cuenta')
+    //     .send({username:"usertest", correo:"correotest@test.com",password:"123456",id:res2.body[0].id});
+    //     expect(res3.status).to.be.equal(500);
+    //   });
+    
     it('debe poder obtener una cuenta de usuario registrada ', async () => {
         let res = await chai
         .request(url)
@@ -65,6 +84,14 @@ describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
         .send({username:"user1"});
         expect(res.status).to.equal(200);
     });
+
+    // after(async() =>{  //dar de baja la cuenta
+    //     let res = await chai
+    //     .request(url)
+    //     .post('/registrar_usuario')
+    //     .send({nombre:"nombretest", apellido:"apellidopasword",dpi:"123456",edad:20});
+    //     expect(res.status).to.be.equal(500);
+    // });
 });
 
 
