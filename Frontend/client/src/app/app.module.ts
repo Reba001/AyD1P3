@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { CommonModule} from '@angular/common';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { CompraGiftcardComponent } from './components/compra-giftcard/compra-giftcard.component';
+import { HomeComponent } from './components/home/home/home.component';
+import { NavegadorComponent } from './components/navegador/navegador/navegador.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegistroUsuarioComponent,
-    CompraGiftcardComponent
+    CompraGiftcardComponent,
+    HomeComponent,
+    NavegadorComponent
   ],
   imports: [
     BrowserModule,
