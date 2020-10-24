@@ -32,8 +32,4 @@ export class UsuarioService {
   verificarCorreo(correo: string){
     return this.http.post('http://localhost:3000/verificar_correo', {correo:correo});
   }
-
-
-
-
 }

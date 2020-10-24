@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule} from '@angular/common';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
+import { CompraGiftcardComponent } from './components/compra-giftcard/compra-giftcard.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    CompraGiftcardComponent
   ],
   imports: [
     BrowserModule,
