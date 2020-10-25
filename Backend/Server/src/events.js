@@ -235,8 +235,6 @@ router.get('/get_info_usuario', (req, res, next) => {
   );
 });
 
-<<<<<<< HEAD
-=======
 //******Factura******
 router.post('/registrar_compra', (req, res, next) => {
   db.query(
@@ -255,7 +253,25 @@ router.post('/registrar_compra', (req, res, next) => {
     }
   );
 });
->>>>>>> factura-B-SRV
+
+//******Factura******
+router.post('/registrar_detalle', (req, res, next) => {
+  db.query(
+    'INSERT INTO DETALLE(cantidad, precio, id_factura, id_giftcards)',
+    [req.body.cantidad, req.body.precio, req.body.factura, req.body.gift],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
 
   return router;
 }
