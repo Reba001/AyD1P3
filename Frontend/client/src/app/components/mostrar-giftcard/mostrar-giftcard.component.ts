@@ -39,5 +39,9 @@ export class MostrarGiftcardComponent implements OnInit {
     );
   }
 
+  comprar(gift:Giftcard){
+    console.log(gift);
+  }
+
 
 }

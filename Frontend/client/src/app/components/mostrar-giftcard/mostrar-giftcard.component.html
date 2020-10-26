@@ -27,7 +27,7 @@
            <div class="col-md-6 col-lg-4" *ngFor="let gift of giftCards">
               
  
-             <img  class="img-fluid" [src]="gift.image" alt="" width="100" height="100">
+             <img  class="img-fluid" [src]="gift.image" alt="" width="100" height="100" (click)="comprar(gift)">
              <p class="lead text-center">{{gift.name}}</p>
              <fa-icon [icon] = "faEdit">
             </fa-icon>
