@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { Giftcard } from '../../models/giftcard';
+import { HttpClient } from '@angular/common/http';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GiftcardService {
+
+  
+  constructor(private http:HttpClient) { }
+
+  getGiftCards():Observable<Giftcard[]>{
+    return this.http.get<Giftcard[]>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Card')
+    .pipe(
+      tap(_ => console.log("fetched giftcard")),
+      catchError( this.handleError<Giftcard[]>('getGiftCards', []))
+    );
+  }
+
+  addGiftcard(gift:Giftcard){
+    return this.http.post('http://localhost:3000/registrar_giftcard', gift);
+  }
+
+  desactivarGift(gift:Giftcard){
+    return this.http.put('http://localhost:3000/desactivar_giftcard', {id:gift.id});
+  }
+
+  registrarCompra(){
+
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+ 
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      alert(error.message);
+      // TODO: better job of transforming error for user consumption
+      console.error(`${operation} failed: ${error.message}`);
+ 
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+
+}

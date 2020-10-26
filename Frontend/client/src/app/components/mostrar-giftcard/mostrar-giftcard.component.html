@@ -1,0 +1,71 @@
+<div  class="container">
+        
+    <section class="page-section portfolio" id="portfolio">
+       <div class="container">
+   
+         <!-- Portfolio Section Heading -->
+         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portafolio</h2>
+   
+         <!-- Icon Divider -->
+         <div class="divider-custom">
+           <div class="divider-custom-line"></div>
+           <div class="divider-custom-icon">
+           
+             <fa-icon [icon] = "faStar">
+           
+             </fa-icon>
+             <!--i class="fas fa-star"></i-->
+           </div>
+           <div class="divider-custom-line"></div>
+         </div>
+   
+         <!-- Portfolio Grid Items -->
+        
+         <div class="row" >
+   
+           <!-- Portfolio Item 1 -->
+           <div class="col-md-6 col-lg-4" *ngFor="let gift of giftCards">
+              
+ 
+             <img  class="img-fluid" [src]="gift.image" alt="" width="100" height="100">
+             <p class="lead text-center">{{gift.name}}</p>
+             <fa-icon [icon] = "faEdit">
+            </fa-icon>
+         <fa-icon [icon] = "faTimesCircle">
+         </fa-icon>
+         
+
+         <fa-icon [icon] = "faCopy" >
+          </fa-icon>
+             
+           </div>
+   
+   
+         </div>
+         <br>
+         <br>
+         <br>
+        <br>
+
+          <br>
+          <!--div *ngIf="selectTipo==1"class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Contenido</span>
+              </div>
+              <textarea class="form-control"
+              [(ngModel)]="contenido" rows="10" aria-label="With textarea"></textarea>
+          </div--->
+
+
+ 
+         <!--button type="submit" class="btn btn-primary btn-xl float-right" id="btnCrear" (click)="">Crear</button--->
+           
+         <!-- /.row -->
+   
+       </div>
+     </section>
+   
+ 
+     
+   
+</div>
