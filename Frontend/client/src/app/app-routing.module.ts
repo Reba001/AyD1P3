@@ -5,13 +5,12 @@ import { RegistroUsuarioComponent } from './components/registro-usuario/registro
 import { MostrarGiftcardComponent } from './components/mostrar-giftcard/mostrar-giftcard.component';
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent}
+  {path:'login', component:LoginComponent},
   {path: 'registro-usuario', component:RegistroUsuarioComponent},
   {path: 'mostrar-giftcards', component:MostrarGiftcardComponent}
 ];
 
 
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

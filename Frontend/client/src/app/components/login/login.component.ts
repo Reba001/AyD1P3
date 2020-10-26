@@ -44,11 +44,10 @@ export class LoginComponent implements OnInit {
 
   TryLogin()
   {
-    alert("Ya funciona no tira eeror el login");
     this.user.usuario = this.loginForm.controls['username'].value;
     this.user.password = this.loginForm.controls['password'].value;
     console.log(this.user);
-    /*this.logearse.login(this.user).subscribe(usuario =>{
+    this.logearse.login(this.user).subscribe(usuario =>{
       console.log(usuario);
       if(usuario.status == 'error'){
         alert("Credenciales incorrectas vuelva a ingresarlas");
@@ -56,7 +55,7 @@ export class LoginComponent implements OnInit {
       }
       console.log("sii se pudo conectar");
 
-    });*/
+    });
       
       /*if(this.logearse.login(this.user) == 'ok')
       {
