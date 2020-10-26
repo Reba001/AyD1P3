@@ -192,7 +192,26 @@ router.put('/desactivar_giftcard', (req, res, next) => {
   );
 });
 
-//******Desactivar availability******
+//******Registrar availability******
+router.post('/registrar_av', (req, res, next) => {
+  db.query(
+    'INSERT INTO AVAILABITILY(total, id_giftcards) VALUES(?,?)',
+    [req.body.total, req.body.id],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Registrar availability******
 router.post('/registrar_av', (req, res, next) => {
   db.query(
     'INSERT INTO AVAILABITILY(total, id_giftcards) VALUES(?,?)',
@@ -248,13 +267,13 @@ router.post('/registrar_compra', (req, res, next) => {
       }
       else
       {
-        res.status(200).json(results);
+        res.status(200).json({status:'ok'});
       }
     }
   );
 });
 
-//******Factura******
+//******Detalle factura******
 router.post('/registrar_detalle', (req, res, next) => {
   db.query(
     'INSERT INTO DETALLE(cantidad, precio, id_factura, id_giftcards)',
@@ -267,7 +286,85 @@ router.post('/registrar_detalle', (req, res, next) => {
       }
       else
       {
-        res.status(200).json(results);
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Detalle factura******
+router.post('/registrar_regalo', (req, res, next) => {
+  db.query(
+    'INSERT INTO REGALO(fecha, emisor, receptor)',
+    [req.body.fecha, req.body.emisor, req.body.receptor],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+
+//******Eliminar detalle factura******
+router.post('/eliminar_regalo', (req, res, next) => {
+  db.query(
+    'DELETE FROM REGALO WHERE id_regalo = ?',
+    [req.body.id],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Detalle regalo******
+router.post('/det_regalo', (req, res, next) => {
+  db.query(
+    'INSERT INTO DET_REGALO(comentario, cantidad, id_regalo, id_giftcards)',
+    [req.body.comentario, req.body.cantidad, req.body.regalo, req.body.gift],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+
+//******Eliminar detalle regalo******
+router.post('/eliminar_det_regalo', (req, res, next) => {
+  db.query(
+    'DELETE FROM REGALO WHERE id_det_regalo = ?',
+    [req.body.id],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
       }
     }
   );
