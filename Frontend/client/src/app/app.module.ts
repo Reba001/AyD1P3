@@ -21,7 +21,7 @@ library.add(fas,far);
     AppComponent,
     RegistroUsuarioComponent,
     MostrarGiftcardComponent,
-    ComprarGiftcardsComponent
+    ComprarGiftcardsComponent,
     LoginComponent
   ],
   imports: [
