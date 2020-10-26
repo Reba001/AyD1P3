@@ -1,4 +1,8 @@
 const express = require('express');
+var Request = require("request");
+var cardController = require('../controllers/cardController');
+var tasaController = require('../controllers/tasaController');
+var valueController = require('../controllers/valueController');
 
 function createRouter(db) {
   const router = express.Router();
@@ -370,8 +374,26 @@ router.post('/eliminar_det_regalo', (req, res, next) => {
   );
 });
 
+/*
+********************************************************
+******************** CONSUME LA API ********************
+********************************************************
+*/
+
+//Tarjetas
+router.get('/api_cards', cardController.listCards);
+
+//Tasas
+router.get('/api_tasa', tasaController.listTasas);
+
+//Valores
+router.get('/api_value', valueController.listValues);
+
   return router;
 }
+
+
+
 module.exports = createRouter;
 
 
