@@ -192,7 +192,26 @@ router.put('/desactivar_giftcard', (req, res, next) => {
   );
 });
 
-//******Desactivar availability******
+//******Registrar availability******
+router.post('/registrar_av', (req, res, next) => {
+  db.query(
+    'INSERT INTO AVAILABITILY(total, id_giftcards) VALUES(?,?)',
+    [req.body.total, req.body.id],
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json({status:'ok'});
+      }
+    }
+  );
+});
+
+//******Registrar availability******
 router.post('/registrar_av', (req, res, next) => {
   db.query(
     'INSERT INTO AVAILABITILY(total, id_giftcards) VALUES(?,?)',
