@@ -14,8 +14,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { ComprarGiftcardsComponent } from './components/comprar-giftcards/comprar-giftcards.component';
-
 library.add(fas,far);
+import { HomeComponent } from './components/home/home/home.component';
+import { NavegadorComponent } from './components/navegador/navegador/navegador.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,8 @@ library.add(fas,far);
     MostrarGiftcardComponent,
     ComprarGiftcardsComponent,
     LoginComponent
+    HomeComponent,
+    NavegadorComponent
   ],
   imports: [
     BrowserModule,

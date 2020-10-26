@@ -41,7 +41,6 @@ export class RegistroUsuarioComponent implements OnInit {
       }else {
         error = 'Se necesita '+controlName+' campo obligatorio.';
       }
-
     }
     return error;
 
@@ -57,22 +56,42 @@ export class RegistroUsuarioComponent implements OnInit {
     console.log(usuario);
 
     let cuenta:Cuenta = new Cuenta();
-    cuenta.correo = this.usuarioForm.controls['correo'].value();
-    cuenta.password = this.usuarioForm.controls['password'].value();
-    cuenta.username = this.usuarioForm.controls['username'].value();
+    cuenta.correo = this.usuarioForm.controls['correo'].value;
+    cuenta.password = this.usuarioForm.controls['password'].value;
+    cuenta.username = this.usuarioForm.controls['username'].value;
+    console.log(cuenta);
 
 
     let respuesta:any = await this.usuarioService.addUsuario(usuario).toPromise();
+    let verUsuario:any = await this.usuarioService.verificarUsuario(cuenta.username).toPromise();
+    let verCorreo:any = await this.usuarioService.verificarCorreo(cuenta.correo).toPromise(); 
 
     console.log(respuesta);
+    console.log(verUsuario);
+    console.log(verCorreo);
 
-    let ultimoId:any = await this.usuarioService.obtenerUltimouser().toPromise();
-    console.log(ultimoId);
+    if(respuesta.status == 'ok' && verUsuario.status  == 'ok' && verCorreo.status == 'ok'){
+      let ultimoId:any = await this.usuarioService.obtenerUltimouser().toPromise();
+      console.log(ultimoId);
+      
 
-    cuenta.id_usuario = ultimoId.id_usuario;
+      for(var id of ultimoId){
+        console.log(id.id);
+        cuenta.id = id.id;
+      }
 
-    let cuenta2:any = await this.usuarioService.registrarCuenta(cuenta).toPromise();
-    console.log(cuenta2);
+      console.log(cuenta);
+
+
+      let cuenta2:any = await this.usuarioService.registrarCuenta(cuenta).toPromise();
+      console.log(cuenta2);
+
+
+    }else{
+      alert('Error al ingresar y registrar un usuario');
+    }
+
+    
 
     
 
