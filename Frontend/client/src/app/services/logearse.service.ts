@@ -22,9 +22,10 @@ export class LogearseService {
 
   login(user:User)
   {
-    this.http.post<any>(this.usuariourl, {user}, httpOptions).subscribe(data => {
+    return this.http.post<any>(this.usuariourl, {user}, httpOptions);
+    /*this.http.post<any>(this.usuariourl, {user}, httpOptions).subscribe(data => {
     this.retorno = data.id;
     console.log('respuesta: ' + data.id);})
-    return this.retorno;
+    return this.retorno;*/
   }
 }

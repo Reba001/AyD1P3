@@ -44,14 +44,25 @@ export class LoginComponent implements OnInit {
 
   TryLogin()
   {
-      if(this.logearse.login(this.user) == 'ok')
+    this.logearse.login(this.user).subscribe(usuario =>{
+      console.log(usuario);
+      if(usuario.status == 'error'){
+        alert("Credenciales incorrectas vuelva a ingresarlas");
+        return;
+      }
+      console.log("sii se pudo conectar");
+
+    });
+      
+      /*if(this.logearse.login(this.user) == 'ok')
       {
+      
           //rutear a página siguiente
       }
       else
       {
           console.log("usuario no registrado");
-      }
+      }*/
   }
 
 } 
