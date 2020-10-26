@@ -1,0 +1,31 @@
+
+<form [formGroup]="loginForm">
+    <div class="form-group">
+        <label for="username">Correo</label>
+        <input type="text" formControlName="username" class="form-control" [ngModel]="user.usuario" required/>
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" formControlName="password" class="form-control" [ngModel]="user.password" required/>
+    </div>
+    <div class='form-group'>
+        <label for="cars">Elija su tipo de usuario :</label>
+        <select name="rol" id="rol" (change)="selectChangeHandler($event)">
+        <option value="1">Cliente</option>
+        <option value="2">Administrador</option>
+        </select>
+        <!--<p><span>You selected: </span><b>{{selectedDay}}</b></p>-->
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary" (click)="TryLogin()">
+        <!--<p *ngIf="showMyMessage">{{GetControls()}}</p>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Ingresar
+        </button>
+        <a routerLink="/registro" class="btn btn-link"  routerLinkActive="active">Registrarse</a>
+    <!--<tr><td>{{mensaje}}</td></tr>-->
+      </div>
+</form>
+<router-outlet></router-outlet>
+
+

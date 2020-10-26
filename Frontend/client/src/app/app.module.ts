@@ -6,6 +6,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule} from '@angular/common';
+import { LoginComponent } from './components/login/login.component';
 import { RegistroUsuarioComponent } from './components/registro-usuario/registro-usuario.component';
 import { MostrarGiftcardComponent } from './components/mostrar-giftcard/mostrar-giftcard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,6 +22,7 @@ library.add(fas,far);
     RegistroUsuarioComponent,
     MostrarGiftcardComponent,
     ComprarGiftcardsComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
