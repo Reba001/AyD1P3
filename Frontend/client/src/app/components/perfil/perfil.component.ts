@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 export class PerfilComponent implements OnInit {
   usuarioperfiles:Usuarioperfil[] = [];
   username:string;
-  usuarioperfil:Usuarioperfil;
+  perfil:Usuarioperfil;
 
   constructor(private router:Router,
     private perfilservice:VerperfilService) { }
 
   ngOnInit(): void {
-    this.usuarioperfil = new Usuarioperfil();
+    this.perfil = new Usuarioperfil();
     this.getDetallesUsuario();
   }
 
