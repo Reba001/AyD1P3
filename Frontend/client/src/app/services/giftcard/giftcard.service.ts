@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Giftcard } from '../../models/giftcard';
+import { Tarjeta } from '../../models/tarjeta';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -32,16 +33,16 @@ export class GiftcardService {
     return this.http.put('http://localhost:3000/desactivar_giftcard', {id:gift.id});
   }
 
-  registrarCompra(giftCard:Giftcard){
-    return this.http.post('http://localhost:3000/registrar_compra', giftCard);
+  registrarCompra(tarjeta:Tarjeta){
+    return this.http.post('http://localhost:3000/registrar_compra', tarjeta);
   }
   obtenerUltimaFact(){
     return this.http.get('http://localhost:3000/ultima_factura');
 
   }
 
-  registrarDetalle(giftCard:Giftcard){
-    return this.http.post('http://localhost:3000/registrar_compra', giftCard);
+  registrarDetalle(detalle:any){
+    return this.http.post('http://localhost:3000/registrar_compra', detalle);
 
   }
 

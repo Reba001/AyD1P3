@@ -1,6 +1,6 @@
 export class Tarjeta {
     no_tarjeta:string;
     fecha:string;
-    estado:number;
+    estado:string;
     id_usuario:number;
 }

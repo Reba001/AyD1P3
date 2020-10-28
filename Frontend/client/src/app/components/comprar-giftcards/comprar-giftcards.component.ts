@@ -6,7 +6,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Giftcard } from '../../models/giftcard';
 
 import { elementAt } from 'rxjs/operators';
-
+import { Tarjeta } from 'src/app/models/tarjeta';
+import * as CryptoJS from 'crypto-js';
+import { ASTWithSource } from '@angular/compiler';
+import { async } from 'rxjs/internal/scheduler/async';
 @Component({
   selector: 'app-comprar-giftcards',
   templateUrl: './comprar-giftcards.component.html',
@@ -50,7 +53,6 @@ export class ComprarGiftcardsComponent implements OnInit {
 
   public getSubtotal(valor, giftcard:Giftcard){
     let cadena = '';
-    this.selectOrden = 1;
     if(giftcard.cantidad){
       let subtotal = giftcard.cantidad * valor;  
       console.log("Subtotal");
@@ -73,7 +75,6 @@ export class ComprarGiftcardsComponent implements OnInit {
 
   public valorCap(valor, giftcard:Giftcard){
     console.log(valor);
-    this.selectOrden = 1;
     
     if(giftcard.cantidad){
       let subtotal = giftcard.cantidad * valor;  
@@ -122,7 +123,18 @@ export class ComprarGiftcardsComponent implements OnInit {
     const control = this.tarjetaForm.controls['total'];
     if(this.selectOrden == 2){
       console.log("convirtiendo a quetzales");
-      control.setValue(7.85 * this.valorQ);
+      this.giftcardService.getTasa().subscribe(
+        res =>{
+          console.log("Este calculo de quetzales");
+          console.log(res);
+          res.forEach(element => {
+            console.log(element);
+            control.setValue(element.total * this.valorQ);
+            
+          });
+        }
+      );
+      
     }else{
       console.log("convirtiendo a dolares");
       control.setValue(this.valorQ);
@@ -135,6 +147,42 @@ export class ComprarGiftcardsComponent implements OnInit {
     console.log("-----------------------------");
     console.log(fecha);
     console.log(this.tarjetaForm.controls['total'].value);
+    // fecha, estado, notarjeta, id_usuario
+    let tarjeta = new Tarjeta();
+    tarjeta.estado = 'A';
+    tarjeta.fecha = fecha;
+    let not = this.tarjetaForm.controls['notarjeta'].value;
+    console.log(not);
+    const codigo = CryptoJS.AES.encrypt(not, "123ABC").toString();
+    console.log(codigo);
+    tarjeta.no_tarjeta = codigo;
+    tarjeta.id_usuario = this.userLogin[0].id_usuario;
+    
+    
+    const factura:any = await this.giftcardService.registrarCompra(tarjeta).toPromise();
+    if(factura.status === 'ok'){
+      const ultimoF:any = await this.giftcardService.obtenerUltimaFact().toPromise();
+      this.giftCards.forEach(async dettalle =>{
+        const precio = dettalle.subtotal / dettalle.cantidad;
+        const obdetalle = { factura: ultimoF.id, 
+          gift:dettalle.id,
+          precio:precio,
+          cantidad:dettalle.cantidad };
+        // aqui empieza la insercion a detalle
+        const response:any = await this.giftcardService.registrarDetalle(obdetalle).toPromise();
+        if(response.status == 'ok'){
+          console.log("Detalle registrado :))");
+
+        }
+      });
+
+      alert("Compra exitosa :D");
+      
+
+    }else{
+      alert("Error al insertar la compra xD");
+    }
+
 
     // aqui va el servicio y la modificacion para ver lo que se manda a la BD
   }
