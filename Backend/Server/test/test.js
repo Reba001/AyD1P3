@@ -103,7 +103,7 @@ describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
 */
 
 //************ OBTENER USUARIOS POR MOCK ************* */
-describe('Mockito de obtner usuarios',()=>{
+describe.only('Mockito de obtner usuarios',()=>{
     it('Debe poder obtener usuarios ', (done) => {
        let res = chai
           .request(url)

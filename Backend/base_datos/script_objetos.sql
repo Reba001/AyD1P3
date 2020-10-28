@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 -- Table `gifthub`.`AVAILABILITY`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gifthub`.`AVAILABILITY` (
-  `id_valor` INT NOT NULL,
+  `id_valor` INT NOT NULL AUTO_INCREMENT,
   `total` INT NOT NULL,
   `id_giftcards` VARCHAR(9) NOT NULL,
   PRIMARY KEY (`id_valor`),
@@ -91,7 +91,7 @@ ENGINE = InnoDB;
 -- Table `gifthub`.`FACTURA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gifthub`.`FACTURA` (
-  `id_factura` INT NOT NULL,
+  `id_factura` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
   `estado` VARCHAR(1) NOT NULL,
   `no_tarjeta` VARCHAR(50) NULL,
@@ -109,9 +109,9 @@ ENGINE = InnoDB;
 -- Table `gifthub`.`DETALLE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gifthub`.`DETALLE` (
-  `id_compra` INT NOT NULL,
+  `id_compra` INT NOT NULL AUTO_INCREMENT,
   `cantidad` INT NOT NULL,
-  `precio` DECIMAL(3,2) NULL,
+  `precio` DOUBLE NULL,
   `id_factura` INT NOT NULL,
   `id_giftcards` VARCHAR(9) NOT NULL,
   PRIMARY KEY (`id_compra`),
@@ -133,7 +133,7 @@ ENGINE = InnoDB;
 -- Table `gifthub`.`REGALO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gifthub`.`REGALO` (
-  `id_regalo` INT NOT NULL,
+  `id_regalo` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
   `emisor` INT(11) NOT NULL,
   `receptor` INT(11) NOT NULL,
@@ -157,7 +157,7 @@ ENGINE = InnoDB;
 -- Table `gifthub`.`DET_REGALO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gifthub`.`DET_REGALO` (
-  `id_det_regalo` INT NOT NULL,
+  `id_det_regalo` INT NOT NULL AUTO_INCREMENT,
   `comentario` VARCHAR(200) NULL,
   `cantidad` INT NOT NULL,
   `id_regalo` INT NOT NULL,
