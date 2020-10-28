@@ -17,6 +17,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { ComprarGiftcardsComponent } from './components/comprar-giftcards/comprar-giftcards.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { NavegadorComponent } from './components/navegador/navegador/navegador.component';
+import { PagoGiftcardComponent } from './components/pago-giftcard/pago-giftcard.component';
 
 library.add(fas,far);
 
@@ -29,7 +30,8 @@ library.add(fas,far);
     LoginComponent,
     HomeComponent,
     NavegadorComponent,
-    EncabezadoComponent
+    EncabezadoComponent,
+    PagoGiftcardComponent
   ],
   imports: [
     BrowserModule,

@@ -280,6 +280,7 @@ router.get('/get_info_usuario', (req, res, next) => {
 
 //******Factura******
 router.post('/registrar_compra', (req, res, next) => {
+  console.log(req.body.fecha);
   db.query(
     'INSERT INTO FACTURA(fecha, estado, no_tarjeta, id_usuario) VALUES(?,?,?,?)',
     [req.body.fecha, req.body.estado, req.body.tarjeta, req.body.id],

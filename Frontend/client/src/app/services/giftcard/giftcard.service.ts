@@ -41,8 +41,8 @@ export class GiftcardService {
 
   }
 
-  registrarDetalle(detalle:any){
-    return this.http.post('http://localhost:3000/registrar_compra', detalle);
+  registrarDetalle(detalle){
+    return this.http.post('http://localhost:3000/registrar_detalle', detalle);
 
   }
 

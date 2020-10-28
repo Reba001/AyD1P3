@@ -22,11 +22,14 @@ export class MostrarGiftcardComponent implements OnInit {
 
   constructor(private giftcardService:GiftcardService,
     private router:Router) {
+      //localStorage.removeItem("carrito");
+      //localStorage.removeItem("currentUser");
+      
 
     }
 
   ngOnInit(): void {
-    localStorage.removeItem("carrito");
+    //localStorage.removeItem("carrito");
     this.obtenerGiftCards();
   }
 

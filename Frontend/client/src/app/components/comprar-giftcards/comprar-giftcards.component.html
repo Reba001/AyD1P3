@@ -70,55 +70,15 @@
 
 
                 </div>
-               
-                <form [formGroup] = "tarjetaForm" class="form-horizontal" method="post">
-                    <fieldset>
-                        <legend class="text-center header">Finalizar Compra</legend>
-                        
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="notarjeta" name="notarjeta" type="text" placeholder="Tarjeta" 
-                                class="form-control" formControlName="notarjeta">
-                                <span style="color:red;">{{getError('notarjeta')}}</span>
-                            </div>
-                        </div>
-                        
+                
+                <app-pago-giftcard
+                [giftCards] ="giftCards"
+                [numusuario] = "numusuario"
+                >
 
-                        <div class="form-group">
-                            <span class="col-md-1 col-md-offset-2 text-center"></span>
-                            <div class="col-md-8">
-                                <input id="precio" name="precio" type="text" placeholder="Total"
-                                 class="form-control" formControlName="total" [value] ="getTotal()">
-                                 <span style="color:red;">{{getError('total')}}</span>
-                            </div>
-                        </div>
-                        <input type="hidden" #fecha [value]="dateObj | date:'yyyy-MM-dd'"> 
+                </app-pago-giftcard>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-lg4">
-                                <div class="input-group">
-                                    <select class="custom-select" 
-                                    id="inputGroupSelect04" [(ngModel)]="selectOrden" formControlName="seleccionador" (change)="convertir()">
-                                      <option selected [value]="1">Dolares</option>
-                                      <option [value]="2">Quetzales</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
-
-                        <div class="form-group">
-                            <div class="col-md-12 pull-left">
-                                <button type="submit" class="btn btn-primary btn-lg" [disabled] = "tarjetaForm.invalid" (click)="comprarTarjeta(fecha.value)">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+                
             </div>
         </div>
     </div>
