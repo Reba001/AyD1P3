@@ -181,8 +181,8 @@ router.post('/verificar_correo', (req, res, next) => {
 //******Registrar giftcard******
 router.post('/registrar_giftcard', (req, res, next) => {
   db.query(
-    'INSERT INTO GIFTCARDS(nombre, descripcion, imagen, change_rate, activa) VALUES(?,?,?,?,?)',
-    [req.body.nombre, req.body.descripcion, req.body.imagen, req.body.change_rate, req.body.activa],
+    'INSERT INTO GIFTCARDS(id_giftcards, nombre, descripcion, imagen, charge_rate, activa) VALUES(?,?,?,?,?,?)',
+    [req.body.id, req.body.name, req.body.descripcion, req.body.image, req.body.rate, req.body.active],
     (error, results) => {
       if(error)
       {
