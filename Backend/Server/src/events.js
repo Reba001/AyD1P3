@@ -281,7 +281,7 @@ router.get('/get_info_usuario', (req, res, next) => {
 //******Factura******
 router.post('/registrar_compra', (req, res, next) => {
   db.query(
-    'INSERT INTO FACTURA(fecha, estado, no_tarjeta, id_usuario)',
+    'INSERT INTO FACTURA(fecha, estado, no_tarjeta, id_usuario) VALUES(?,?,?,?)',
     [req.body.fecha, req.body.estado, req.body.tarjeta, req.body.id],
     (error, results) => {
       if(error)
@@ -300,7 +300,7 @@ router.post('/registrar_compra', (req, res, next) => {
 //******Detalle factura******
 router.post('/registrar_detalle', (req, res, next) => {
   db.query(
-    'INSERT INTO DETALLE(cantidad, precio, id_factura, id_giftcards)',
+    'INSERT INTO DETALLE(cantidad, precio, id_factura, id_giftcards) VALUES(?,?,?,?)',
     [req.body.cantidad, req.body.precio, req.body.factura, req.body.gift],
     (error, results) => {
       if(error)
@@ -319,7 +319,7 @@ router.post('/registrar_detalle', (req, res, next) => {
 //******Detalle factura******
 router.post('/registrar_regalo', (req, res, next) => {
   db.query(
-    'INSERT INTO REGALO(fecha, emisor, receptor)',
+    'INSERT INTO REGALO(fecha, emisor, receptor) VALUES(?,?,?)',
     [req.body.fecha, req.body.emisor, req.body.receptor],
     (error, results) => {
       if(error)
@@ -358,7 +358,7 @@ router.post('/eliminar_regalo', (req, res, next) => {
 //******Detalle regalo******
 router.post('/det_regalo', (req, res, next) => {
   db.query(
-    'INSERT INTO DET_REGALO(comentario, cantidad, id_regalo, id_giftcards)',
+    'INSERT INTO DET_REGALO(comentario, cantidad, id_regalo, id_giftcards) VALUES(?,?,?,?)',
     [req.body.comentario, req.body.cantidad, req.body.regalo, req.body.gift],
     (error, results) => {
       if(error)
