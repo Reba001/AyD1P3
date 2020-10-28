@@ -297,6 +297,7 @@ router.post('/registrar_compra', (req, res, next) => {
   );
 });
 
+
 //******Detalle factura******
 router.post('/registrar_detalle', (req, res, next) => {
   db.query(

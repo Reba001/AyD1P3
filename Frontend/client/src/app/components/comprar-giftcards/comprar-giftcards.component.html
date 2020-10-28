@@ -1,0 +1,126 @@
+<p>Ruteado a registro, aquí deberia salir la pantalla de registro</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <div class="row" >
+       
+                    <!-- Portfolio Item 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="input-group mb-3">
+                            <label for="">Nombre Tarjeta</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4">
+                        <div class="input-group mb-3">
+                            <label for="">Precio</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="input-group mb-3">
+                            <label for="">Cantidad</label>
+                        </div>
+                    </div>
+                    
+                    
+                    <br>
+                    <br>
+      
+            
+                </div>
+                
+                <div *ngFor="let gift of giftCards; let val;">
+                    <div class="row" >
+       
+                        <!-- Portfolio Item 1 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="text" [(ngModel)]="gift.name">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-4">
+                            <div class="input-group mb-3">
+                                <select class="form-control" #valorSelect name="valorSelect" id="valorSelect" (change)="valorCap(valorSelect.value, gift)">
+                                    <option [value]="valor" *ngFor="let valor of gift.precios">{{valor}}</option>
+                                    
+                                </select>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" 
+                                [(ngModel)] = "gift.cantidad"
+                                placeholder="Ingrese la cantidad aqui">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <span style="color:blue;">{{getSubtotal(valorSelect.value, gift)}}</span>
+                        </div>
+                        
+                        <br>
+                        <br>
+          
+                
+                    </div>
+
+
+                </div>
+               
+                <form [formGroup] = "tarjetaForm" class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">Finalizar Compra</legend>
+                        
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="notarjeta" name="notarjeta" type="text" placeholder="Tarjeta" 
+                                class="form-control" formControlName="notarjeta">
+                                <span style="color:red;">{{getError('notarjeta')}}</span>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"></span>
+                            <div class="col-md-8">
+                                <input id="precio" name="precio" type="text" placeholder="Total"
+                                 class="form-control" formControlName="total" [value] ="getTotal()">
+                                 <span style="color:red;">{{getError('total')}}</span>
+                            </div>
+                        </div>
+                        <input type="hidden" #fecha [value]="dateObj | date:'yyyy-MM-dd'"> 
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-lg4">
+                                <div class="input-group">
+                                    <select class="custom-select" 
+                                    id="inputGroupSelect04" [(ngModel)]="selectOrden" formControlName="seleccionador" (change)="convertir()">
+                                      <option selected [value]="1">Dolares</option>
+                                      <option [value]="2">Quetzales</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 pull-left">
+                                <button type="submit" class="btn btn-primary btn-lg" [disabled] = "tarjetaForm.invalid" (click)="comprarTarjeta(fecha.value)">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
