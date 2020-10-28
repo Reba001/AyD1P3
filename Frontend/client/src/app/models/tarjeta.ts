@@ -1,6 +1,6 @@
 export class Tarjeta {
-    no_tarjeta:string;
+    tarjeta:string;
     fecha:string;
     estado:string;
-    id_usuario:number;
+    id:number;
 }
