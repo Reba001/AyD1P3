@@ -6,5 +6,8 @@ export class Giftcard {
     change_rate:number;
     active:string;
     availability:number[];
+    precios:number[] = [];
+    cantidad:number;
+    subtotal:number;
 
 }

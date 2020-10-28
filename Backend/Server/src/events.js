@@ -276,6 +276,23 @@ router.post('/registrar_compra', (req, res, next) => {
     }
   );
 });
+//******Obtener ultima factura******
+router.get('/ultima_factura', (req, res, next) => {
+  db.query(
+    'SELECT MAX(id_factura) AS id FROM FACTURA',
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
 
 //******Detalle factura******
 router.post('/registrar_detalle', (req, res, next) => {

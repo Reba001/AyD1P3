@@ -13,11 +13,15 @@ export class GiftcardService {
   constructor(private http:HttpClient) { }
 
   getGiftCards():Observable<Giftcard[]>{
-    return this.http.get<Giftcard[]>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Card')
-    .pipe(
-      tap(_ => console.log("fetched giftcard")),
-      catchError( this.handleError<Giftcard[]>('getGiftCards', []))
-    );
+    return this.http.get<Giftcard[]>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Card');
+  }
+
+  getValores(){
+    return this.http.get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/Value');
+  }
+
+  getTasa(){
+    return this.http.get<any>('https://my-json-server.typicode.com/CoffeePaw/AyD1API/TasaCambio');
   }
 
   addGiftcard(gift:Giftcard){
@@ -28,7 +32,16 @@ export class GiftcardService {
     return this.http.put('http://localhost:3000/desactivar_giftcard', {id:gift.id});
   }
 
-  registrarCompra(){
+  registrarCompra(giftCard:Giftcard){
+    return this.http.post('http://localhost:3000/registrar_compra', giftCard);
+  }
+  obtenerUltimaFact(){
+    return this.http.get('http://localhost:3000/ultima_factura');
+
+  }
+
+  registrarDetalle(giftCard:Giftcard){
+    return this.http.post('http://localhost:3000/registrar_compra', giftCard);
 
   }
 

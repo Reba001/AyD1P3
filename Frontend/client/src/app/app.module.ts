@@ -14,16 +14,18 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { ComprarGiftcardsComponent } from './components/comprar-giftcards/comprar-giftcards.component';
-library.add(fas,far);
 import { HomeComponent } from './components/home/home/home.component';
 import { NavegadorComponent } from './components/navegador/navegador/navegador.component';
+
+library.add(fas,far);
+
 @NgModule({
   declarations: [
     AppComponent,
     RegistroUsuarioComponent,
     MostrarGiftcardComponent,
     ComprarGiftcardsComponent,
-    LoginComponent
+    LoginComponent,
     HomeComponent,
     NavegadorComponent
   ],

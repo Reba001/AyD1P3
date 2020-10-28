@@ -14,7 +14,8 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 })
 export class MostrarGiftcardComponent implements OnInit {
   giftCards: Giftcard[] = [];
-  faStar = faStar;
+  compraGift:Giftcard[] = [];
+   faStar = faStar;
   faEdit = faEdit;
   faTimesCircle = faTimesCircle;
   faCopy = faCopy;
@@ -25,22 +26,48 @@ export class MostrarGiftcardComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    localStorage.removeItem("carrito");
     this.obtenerGiftCards();
   }
 
-  obtenerGiftCards(){
-    this.giftcardService.getGiftCards().
-    subscribe(
-      giftcards => {
-        console.log(giftcards);
-        this.giftCards = giftcards;
-        console.log(this.giftCards);
-      }
-    );
+  async obtenerGiftCards(){
+    this.giftCards = await this.giftcardService.getGiftCards().toPromise();
+    
+    let valores:any = await this.giftcardService.getValores().toPromise();
+    console.log(valores);
+
+    this.giftCards.forEach(card =>{
+      card.precios = [];
+      card.cantidad = 1;
+      card.availability.forEach(e =>{
+        valores.forEach(element => {
+          if(e == element.id){
+            card.precios.push(element.total);
+          }
+        
+        });
+
+      });
+
+        
+
+    });      
+    console.log(this.giftCards);
+
   }
 
   comprar(gift:Giftcard){
     console.log(gift);
+
+    var tempog = this.compraGift.find(g => g === gift);
+    if(tempog){
+      alert("Su tarjeta ya se encuentra en el carrito ");
+      
+    }else{
+      alert("Tarjeta añadida");
+      this.compraGift.push(gift);
+      localStorage.setItem("carrito",JSON.stringify(this.compraGift));
+    }
   }
 
 

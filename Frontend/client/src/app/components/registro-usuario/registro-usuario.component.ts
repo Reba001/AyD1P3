@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { Cuenta } from 'src/app/models/cuenta';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -67,10 +68,13 @@ export class RegistroUsuarioComponent implements OnInit {
     let verCorreo:any = await this.usuarioService.verificarCorreo(cuenta.correo).toPromise(); 
 
     console.log(respuesta);
+    console.log("Usuario");
+
     console.log(verUsuario);
+    console.log("Correo");
     console.log(verCorreo);
 
-    if(respuesta.status == 'ok' && verUsuario.status  == 'ok' && verCorreo.status == 'ok'){
+    if(respuesta.status == 'ok' && verUsuario.status  != 'error' && verCorreo.status != 'error'){
       let ultimoId:any = await this.usuarioService.obtenerUltimouser().toPromise();
       console.log(ultimoId);
       
