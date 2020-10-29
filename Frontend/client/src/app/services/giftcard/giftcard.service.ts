@@ -4,6 +4,7 @@ import { Tarjeta } from '../../models/tarjeta';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Compra } from 'src/app/models/compra';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,13 @@ export class GiftcardService {
   obtenerUltimaFact(){
     return this.http.get('http://localhost:3000/ultima_factura');
 
+  }
+
+  historialCompra(idusuario:number):Observable<Compra[]>{
+    return this.http.get<Compra[]>(`http://localhost:3000/historial_factura/${idusuario}`).pipe(
+      tap(_ => console.log("fetched usuarios")),
+      catchError(this.handleError<Compra[]>('historialCompras', []))
+    );
   }
 
   registrarDetalle(detalle){
