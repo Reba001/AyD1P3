@@ -1,4 +1,4 @@
-<p>encabezado works!</p>
+
 
 <header id="header">
     <div class="container">
@@ -17,8 +17,8 @@
       <nav id="nav-menu-container" class="pull-rigth">
         <ul class="nav-menu">
           <li><a routerLink="registro-usuario">About Us</a></li>
-          <li><a routerLink="usuario">Features</a></li>
-          <li><a href="#">Portfolio</a></li>
+          <li><a routerLink="mostrar-giftcards">Features</a></li>
+          <li><a routerLink="historial-compra">Portfolio</a></li>
           <li><a href="#">Team</a></li>
           <li class="menu-has-children"><a href="">Drop Down</a>
             <ul>
@@ -42,11 +42,26 @@
       </nav>
       <!-- #nav-menu-container -->
   
-      <nav class="nav social-nav pull-right d-none d-lg-inline">
-        <a routerLink="login">
+      <nav class="nav social-nav pull-right d-none d-lg-inline"  *ngIf="!usserLogged">
+        <a routerLink="login"><fa-icon [icon] = "faSignInAlt" >
+          
+        </fa-icon>
         </a> 
-        <a routerLink="home">
-        </a>
+        
+      </nav>
+      <nav class="nav social-nav pull-right d-none d-lg-inline"  *ngIf="usserLogged">
+        
+        <a routerLink="comprar"><fa-icon [icon] = "faCartPlus" >
+          
+        </fa-icon>
+        </a> 
+        <a routerLink="login"><fa-icon [icon] = "faSignOutAlt" (click)="logout()">
+          
+        </fa-icon>
+        </a> 
+
+        
+        
       </nav>
     </div>
   </header>

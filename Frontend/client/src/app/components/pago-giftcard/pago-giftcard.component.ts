@@ -151,7 +151,7 @@ export class PagoGiftcardComponent implements OnInit {
         });*/
 
         alert("Compra exitosa :D");
-        
+        localStorage.removeItem("carrito");
 
       }else{
         alert("Error al insertar la compra xD");

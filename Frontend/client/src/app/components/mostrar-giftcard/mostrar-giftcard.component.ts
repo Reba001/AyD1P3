@@ -6,6 +6,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-mostrar-giftcard',
@@ -19,9 +20,13 @@ export class MostrarGiftcardComponent implements OnInit {
   faEdit = faEdit;
   faTimesCircle = faTimesCircle;
   faCopy = faCopy;
+  private userLog ;
 
   constructor(private giftcardService:GiftcardService,
-    private router:Router) {
+    private router:Router, 
+    private authService:AuthService) {
+      this.userLog = this.authService.getUserLoggedIn();
+
       //localStorage.removeItem("carrito");
       //localStorage.removeItem("currentUser");
       
@@ -30,6 +35,10 @@ export class MostrarGiftcardComponent implements OnInit {
 
   ngOnInit(): void {
     //localStorage.removeItem("carrito");
+    if(!this.userLog){
+      this.router.navigateByUrl('login');
+      return;
+    }
     this.obtenerGiftCards();
   }
 
