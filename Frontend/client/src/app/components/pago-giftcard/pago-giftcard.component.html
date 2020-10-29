@@ -21,7 +21,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"></span>
                             <div class="col-md-8">
                                 <input id="precio" name="precio" type="text" placeholder="Total"
-                                 class="form-control" formControlName="total" >
+                                 class="form-control" formControlName="total" [value]="getTotal()">
                                  <span style="color:red;">{{getError('total')}}</span>
                             </div>
                         </div>

@@ -56,7 +56,6 @@ export class PagoGiftcardComponent implements OnInit {
       console.log("convirtiendo a dolares");
       control.setValue(this.valorQ);
     }
-    this.getTotal();
 
   }
 
@@ -84,8 +83,8 @@ export class PagoGiftcardComponent implements OnInit {
       
     });
     this.valorQ = total;
-    this.tarjetaForm.controls['total'].setValue(total);
-    
+    //this.tarjetaForm.controls['total'].setValue(total);
+    return  total ;
   }
 
 
