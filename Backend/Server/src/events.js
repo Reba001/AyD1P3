@@ -416,7 +416,14 @@ router.get('/api_value', valueController.listValues);
 router.get('/historial_factura/:id', (req, res, next) => {
   const {id} = req.params;
   db.query(
-    'SELECT f.fecha, f.estado, f.no_tarjeta, g.nombre AS Tarjeta, (d.cantidad * d.precio) AS Total\
+    'SELECT  DATE_FORMAT(f.fecha, "%d-%m-%Y") as fecha,\
+     f.estado, \
+     d.id_factura,\
+     f.no_tarjeta,\
+      g.nombre AS Tarjeta, \
+      d.cantidad, \
+     d.precio, \
+      (d.cantidad * d.precio) AS Total \
     FROM USUARIO u\
     JOIN FACTURA f USING(id_usuario)\
     JOIN DETALLE d USING(id_factura)\
