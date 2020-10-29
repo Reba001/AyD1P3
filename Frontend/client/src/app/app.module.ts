@@ -18,6 +18,7 @@ import { ComprarGiftcardsComponent } from './components/comprar-giftcards/compra
 import { HomeComponent } from './components/home/home/home.component';
 import { NavegadorComponent } from './components/navegador/navegador/navegador.component';
 import { PagoGiftcardComponent } from './components/pago-giftcard/pago-giftcard.component';
+import { HistorialCompraComponent } from './components/historial-compra/historial-compra.component';
 
 library.add(fas,far);
 
@@ -31,7 +32,8 @@ library.add(fas,far);
     HomeComponent,
     NavegadorComponent,
     EncabezadoComponent,
-    PagoGiftcardComponent
+    PagoGiftcardComponent,
+    HistorialCompraComponent
   ],
   imports: [
     BrowserModule,
