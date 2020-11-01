@@ -45,7 +45,7 @@ describe('Prueba para iniciar sesión ', ()=>{
         let res = await chai
         .request(url)
         .post('/login')
-        .send({correo:"", password:123});
+        .send({password:123});
         expect(res.status).to.be.equal(500);
     });
     it('Password vacia', async () => {
@@ -57,6 +57,35 @@ describe('Prueba para iniciar sesión ', ()=>{
     });
 });
 
+//REGISTRO CUENTA
+describe('Prueba para registro de cuenta ', ()=>{
+    it('Registro correcto', async () => {
+        let res = await chai
+        .request(url)
+        .post('/registrar_cuenta')
+        .send({username:"user1", password:123, correo:"123@gmail.com", id:1});
+        expect(res.status).to.equal(200);
+
+        let r = await chai
+        .request(url)
+        .get('/ultima_cuenta')
+
+        let bo = await chai
+        .request(url)
+        .post('/eliminar_cuenta')
+        .send({id:r.body[0].id})
+    });
+
+    it('Registro fallido', async () => {
+        let res = await chai
+        .request(url)
+        .post('/registrar_cuenta')
+        .send({username:"user1", password:123, correo:"123@gmail.com"});
+        expect(res.status).to.equal(500);
+    });
+});
+
+/*
 describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
     // before(async () =>{ //creando una cuenta prototipo
     //     let res = await chai
@@ -93,8 +122,7 @@ describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
     //     expect(res.status).to.be.equal(500);
     // });
 });
-
-
+*/
 
 /*
 ***********************************************
@@ -102,7 +130,10 @@ describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
 ***********************************************
 */
 
+
+
 //************ OBTENER USUARIOS POR MOCK ************* */
+/*
 describe('Mockito de obtner usuarios',()=>{
     it('Debe poder obtener usuarios ', (done) => {
        let res = chai
@@ -115,3 +146,5 @@ describe('Mockito de obtner usuarios',()=>{
           });
     });
 });
+
+*/
