@@ -83,24 +83,6 @@ router.post('/registrar_usuario', (req, res, next) => {
   );
 });
 
-//******Obtener ultimo id de  factura******
-router.get('/ultima_factura', (req, res, next) => {
-  db.query(
-    'SELECT MAX(id_factura) AS id FROM FACTURA',
-    (error, results) => {
-      if(error)
-      {
-        console.error(error);
-        res.status(500).json({status:'error'});
-      }
-      else
-      {
-        res.status(200).json(results);
-      }
-    }
-  );
-});
-
 
 //******Registrar cuenta******
 router.post('/registrar_cuenta', (req, res, next) => {
@@ -185,7 +167,7 @@ router.get('/ultima_cuenta', (req, res, next) => {
   );
 });
 
-//******Eliminar detalle factura******
+//******Eliminar cuenta******
 router.post('/eliminar_cuenta', (req, res, next) => {
   db.query(
     'DELETE FROM CUENTA WHERE id_cuenta = ?',
@@ -306,10 +288,53 @@ router.get('/get_info_usuario', (req, res, next) => {
 
 //******Factura******
 router.post('/registrar_compra', (req, res, next) => {
-  console.log(req.body.fecha);
+  if(req.body.fecha == null || req.body.estado == null || req.body.tarjeta == null || req.body.id == null)
+  {
+    res.status(500).json({status:'error'});
+  }
+  else
+  {
+    db.query(
+      'INSERT INTO FACTURA(fecha, estado, no_tarjeta, id_usuario) VALUES(?,?,?,?)',
+      [req.body.fecha, req.body.estado, req.body.tarjeta, req.body.id],
+      (error, results) => {
+        if(error)
+        {
+          console.error(error);
+          res.status(500).json({status:'error'});
+        }
+        else
+        {
+          res.status(200).json({status:'ok'});
+        }
+      }
+    );
+  }
+});
+
+//******Obtener ultimo id de factura******
+router.get('/ultima_factura', (req, res, next) => {
   db.query(
-    'INSERT INTO FACTURA(fecha, estado, no_tarjeta, id_usuario) VALUES(?,?,?,?)',
-    [req.body.fecha, req.body.estado, req.body.tarjeta, req.body.id],
+    'SELECT MAX(id_factura) AS id FROM FACTURA',
+    (error, results) => {
+      if(error)
+      {
+        console.error(error);
+        res.status(500).json({status:'error'});
+      }
+      else
+      {
+        res.status(200).json(results);
+      }
+    }
+  );
+});
+
+//******Eliminar detalle factura******
+router.post('/eliminar_factura', (req, res, next) => {
+  db.query(
+    'DELETE FROM FACTURA WHERE id_factura = ?',
+    [req.body.id],
     (error, results) => {
       if(error)
       {
@@ -344,7 +369,9 @@ router.post('/registrar_detalle', (req, res, next) => {
   );
 });
 
-//******Detalle factura******
+
+
+//******Registrar regalo******
 router.post('/registrar_regalo', (req, res, next) => {
   db.query(
     'INSERT INTO REGALO(fecha, emisor, receptor) VALUES(?,?,?)',
@@ -364,7 +391,7 @@ router.post('/registrar_regalo', (req, res, next) => {
 });
 
 
-//******Eliminar detalle factura******
+//******Eliminar regalo******
 router.post('/eliminar_regalo', (req, res, next) => {
   db.query(
     'DELETE FROM REGALO WHERE id_regalo = ?',

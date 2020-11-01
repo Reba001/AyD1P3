@@ -85,6 +85,35 @@ describe('Prueba para registro de cuenta ', ()=>{
     });
 });
 
+
+//REGISTRO CUENTA
+describe('Prueba para registro de compra ', ()=>{
+    it('Compra correcto', async () => {
+        let res = await chai
+        .request(url)
+        .post('/registrar_compra')
+        .send({fecha:"2020-10-10", estado:'A', tarjeta:123, id:1});
+        expect(res.status).to.equal(200);
+
+        let r = await chai
+        .request(url)
+        .get('/ultima_factura')
+
+        let bo = await chai
+        .request(url)
+        .post('/eliminar_factura')
+        .send({id:r.body[0].id})
+    });
+
+    it('Compra fallida', async () => {
+        let res = await chai
+        .request(url)
+        .post('/registrar_compra')
+        .send({fecha:"2020-10-10", estado:'A', tarjeta:123});
+        expect(res.status).to.equal(500);
+    });
+});
+
 /*
 describe.only('Prueba para obtener informacion de una cuenta de usuario', ()=>{
     // before(async () =>{ //creando una cuenta prototipo
