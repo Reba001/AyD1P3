@@ -179,7 +179,7 @@ describe('Mockito de obtner usuarios',()=>{
 
 */
 
-describe.only('Mockito de obtner precios de una giftcard',()=>{
+describe('Mockito de obtner precios de una giftcard',()=>{
     it('Debe poder obtener los precios de una giftard consultada', (done) => {
        let res =  chai
           .request(url)
