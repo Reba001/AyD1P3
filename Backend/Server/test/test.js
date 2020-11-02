@@ -176,4 +176,19 @@ describe('Mockito de obtner usuarios',()=>{
     });
 });
 
+
 */
+
+describe.only('Mockito de obtner precios de una giftcard',()=>{
+    it('Debe poder obtener los precios de una giftard consultada', (done) => {
+       let res =  chai
+          .request(url)
+          .get('/mock_get_availability')
+        //   expect(res.status).to.equal(200);
+          .end(function (err, res) {
+             console.log(res.body)
+             expect(res).to.have.status(200);
+             done();
+          });
+    });
+});
