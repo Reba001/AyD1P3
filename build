@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd ./Backend/Server
+npm test
