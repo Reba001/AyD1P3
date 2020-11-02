@@ -17,7 +17,11 @@ function createRouter(db) {
     res.status(200).jsonp(prod());
   });
 
-
+  router.get('/mock_get_availability', (req,res,next)=>{
+    const prod = require('../test/availability');
+    console.log(prod);
+    res.status(200).jsonp(prod());
+  });
 
 
 //******Login******
