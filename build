@@ -1,4 +1,4 @@
 #!/bin/sh
-#h
+#hd
 cd ./Backend/Server
 npm --help
