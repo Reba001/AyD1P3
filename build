@@ -1,4 +1,4 @@
 #!/bin/sh
-#hdd
+#hddd
 cd ./Backend/Server
 npm --help
