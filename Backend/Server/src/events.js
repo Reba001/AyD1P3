@@ -23,6 +23,11 @@ function createRouter(db) {
     res.status(200).jsonp(prod());
   });
 
+  router.get('/mock_get_catalogo_gift', (req,res,next)=>{
+    const prod = require('../test/giftcard');
+    console.log(prod);
+    res.status(200).jsonp(prod());
+  });
 
 //******Login******
 router.post('/login', (req, res, next) => {

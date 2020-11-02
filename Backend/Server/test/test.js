@@ -187,6 +187,21 @@ describe('Mockito de obtner precios de una giftcard',()=>{
         //   expect(res.status).to.equal(200);
           .end(function (err, res) {
              console.log(res.body)
+             expect(res).to.have.status(200)
+             done();
+          });
+    });
+});
+
+
+describe('Mockito de obtner catalogo giftcard',()=>{
+    it('Debe poder obtener el listado de giftcards disponibles', (done) => {
+       let res =  chai
+          .request(url)
+          .get('/mock_get_catalogo_gift')
+        //   expect(res.status).to.equal(200);
+          .end(function (err, res) {
+             console.log(res.body)
              expect(res).to.have.status(200);
              done();
           });
