@@ -194,7 +194,7 @@ describe('Mockito de obtner precios de una giftcard',()=>{
 });
 
 
-describe.only('Mockito de obtner catalogo giftcard',()=>{
+describe('Mockito de obtner catalogo giftcard',()=>{
     it('Debe poder obtener el listado de giftcards disponibles', (done) => {
        let res =  chai
           .request(url)
